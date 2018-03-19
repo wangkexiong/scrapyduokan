@@ -1,0 +1,31 @@
+os: Default Azure
+
+skip_tags: true
+branches:
+  only:
+    - nonexisted
+
+environment:
+  APPVEYOR_RDP_PASSWORD:
+    secure: Hj73NIE1ZHUH7DGShakR4Q==
+  GITHUB_USER:
+    secure: qozx3wkmakdI3k/sz9Ml8Q==
+  GITHUB_EMAIL:
+    secure: Xou4FEHMweGQSeay5Q9/LjoLWwlDzMmBa39KYVylgK0=
+  GITHUB_TOKEN:
+    secure: HImK7idCBTKUB6w7DRTDV/5Ko9+TlZCLOXjbuGNb+InxYQm+H72G8fNPKVcrfcEz
+  API_URL:
+    secure: aG/h4nxOc1nAM/7aYzoaJ7cBFcgdVk8bu5X0Gv4eydQzGEOaV/C+HPi81bBqbHWG
+  API_TOKEN:
+    secure: ENzyzzwWBgYYSg5p+0N7nGAjmSnxC1NSxeOqIAsPsWSXwRcEdD91HJuC7dWu2iNk
+
+install:
+  - SET PATH=C:\python27;C:\python27\Scripts;%PATH%
+  - pip install -r requirements.txt
+
+build_script:
+  - scrapy crawl duokanbook
+
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
